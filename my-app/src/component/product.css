@@ -1,0 +1,25 @@
+
+   
+    .Button{
+     padding: 10px !important;
+  text-decoration: none;
+  margin: 10px 0px 10px 0px !important;
+    }
+    
+    .Card{
+        display: flex;
+        width: 300px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0px 0px 20px ;
+        box-shadow: 3px 2px 15px -4px rgba(99,97,99,0.67);
+    
+    }
+    
+    .IMAGE{
+        height: 200px;
+        width: 200px;
+       
+        object-fit: contain;
+    }
