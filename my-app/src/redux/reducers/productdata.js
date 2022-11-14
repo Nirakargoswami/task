@@ -1,6 +1,6 @@
 import { PRODUCT_DATA,ADD_ITEM,REMOVE_ITEM} from "../actions/types";
 const initialState = {
-  productdata : "",
+  productdata : [],
   cartidtem: []
 }
 
