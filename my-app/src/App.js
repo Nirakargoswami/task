@@ -1,8 +1,9 @@
 import './App.css';
-import React, { useEffect, useState ,useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Resizable } from "re-resizable";
 import DragResizeContainer from 'react-drag-resize';
 import { Rnd } from "react-rnd";
+import ScaleText from 'react-scale-text';
 
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -12,8 +13,10 @@ import Productpage from "./pages/productpage"
 function App() {
   const [data, setdata] = useState([])
   const [state, setState] = useState();
-  const [font,setFont] = useState(20)
-const pont = useRef(null)
+  const [font, setFont] = useState(20)
+  const [fontwidh,setfontwidth] = useState()
+  const [newWidth,setnewWidth] = useState()
+  const pont = useRef(null)
   console.log(state)
 
 
@@ -59,60 +62,67 @@ const pont = useRef(null)
 
   // }, [])
   // console.log(products)
-  useEffect(() => {
-    let count = 20
+  // useEffect(() => {
+  //   let count = 20
 
-    console.log(count)
-    console.log(pont.current.style.fontSize)
-    if(state < 50 ){
-      setFont(font - 1)
-        pont.current.style.fontSize = `${font}px`
-        count = count - 1
-     }else{
-      setFont(font + 1)
+  //   console.log(count)
+  //   console.log()
+  //  const newstirng =  pont.current.style.fontSize.replace('px','')
+  //  console.log(newstirng,"font")
+  //   if (fontwidh < newWidth) {
+  //     setFont(newstirng - 0.4)
+  //     pont.current.style.fontSize = `${font}px`
+  //   } else {
+  //     setFont(newstirng + 0.4)
 
-      pont.current.style.fontSize = `${font }px`
-      count = count + 1
-     }
-   },[state])
+  //     pont.current.style.fontSize = `${font}px`
+  //   }
+  // }, [state])
   const canResizable = (isResize) => {
     return { top: isResize, right: isResize, bottom: isResize, left: isResize, topRight: isResize, bottomRight: isResize, bottomLeft: isResize, topLeft: isResize };
-};
-const style = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderb : "solid 1px #ddd",
-  background: "#f0f0f0"
-};
-  
+  };
+  const style = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderb: "solid 1px #ddd",
+    background: "#f0f0f0"
+  };
+
   return (
-    
-    <div className='Maindiv' > 
-   <Rnd
-   bounds='.Maindiv'
-   onResize={(e, direction, ref, delta, position) => {
-    setState(
-      ref.offsetWidth,
-     
-    
-   );
 
-  
-  
-   
-  }}    style={style}
-    default={{
-      x: 0,
-      y: 0,
-      width:"50px",
-      height: 200
-    }}
-  >
- 
-          <p ref={pont}  > Rnd</p>
+    <div className='Maindiv' >
+      <Rnd
+        bounds='.Maindiv'
+        onResize={(e, direction, ref, delta, position) => {
+          console.log(delta,"Star")
+          setfontwidth(delta.width) 
+          
+          setTimeout(() => {
+            setnewWidth(delta.width) 
+           
+          },250)
+          setState(
+            ref.offsetWidth
+          );
+         
+        }}
+       
+        
+        style={style}
+        default={{
+          x: 0,
+          y: 0,
+         
+        }}
+      >
+        <p className="font">
+        some text
 
-  </Rnd>
+        </p>
+  
+
+      </Rnd>
 
       {/* <Resizable
       style={{  border: "1px solid black" }}
@@ -128,7 +138,7 @@ const style = {
       Sample with size
      </Resizable> */}
 
-   
+
       {/* <div className='PRODUCTMAINPAFGE'>
         <h1>All Products</h1>
         <Productpage products={products && products.productdata} />

@@ -79,3 +79,7 @@
   background-color: green;
   position: relative;
 }
+
+.font{
+  font-size:   clamp(min(20px), 16px,max(50px)); 
+}
