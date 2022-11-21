@@ -20,7 +20,14 @@ function App() {
   console.log(state)
 
 
-
+  function downloadimage(){
+    var canvas = document.getElementById("mcanvas");
+    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    var link = document.createElement('a');
+    link.download = "my-image.png";
+    link.href = image;
+    link.click();
+  }
 
   // useEffect(() => {
 
@@ -92,6 +99,7 @@ function App() {
   return (
 
     <div className='Maindiv' >
+      <canvas id="mcanvas">
       <Rnd
         bounds='.Maindiv'
         onResize={(e, direction, ref, delta, position) => {
@@ -123,6 +131,8 @@ function App() {
   
 
       </Rnd>
+      </canvas>
+
 
       {/* <Resizable
       style={{  border: "1px solid black" }}
@@ -147,6 +157,9 @@ function App() {
         <h1>Your cart </h1>
         <Cartpage />
       </div> */}
+            <button onClick={downloadimage}>
+Download
+</button>
     </div>
   )
 }
