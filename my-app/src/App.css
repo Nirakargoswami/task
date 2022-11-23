@@ -83,3 +83,34 @@
 .font{
   font-size:   clamp(min(20px), 16px,max(50px)); 
 }
+
+
+
+.MAin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid black;
+
+}
+
+.MAINBOX{
+  display: flex;
+width: 60%;
+height: 500px;
+border: 1px solid black;
+}
+
+.IAMGE{
+  width: 50%;
+  border: 1px solid black;
+height: 100%;
+}
+.IAMGEstyle{
+  width: 50%;
+  border: 1px solid black;
+  height: 100%;
+
+
+}
