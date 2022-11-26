@@ -6,7 +6,7 @@ import { Resizable } from "re-resizable";
 import DragResizeContainer from 'react-drag-resize';
 import { Rnd } from "react-rnd";
 import ScaleText from 'react-scale-text';
-import { Stage, Layer, Image, Transformer, Text ,downloadURI} from 'react-konva';
+import { Stage, Layer,Rect, Image,Group, Transformer, Text ,downloadURI} from 'react-konva';
 import useImage from 'use-image';
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -69,6 +69,7 @@ function App() {
   const [font, setFont] = useState(20)
   const [fontwidh, setfontwidth] = useState()
   const [newWidth, setnewWidth] = useState()
+  const [spcing,setSpcing] = useState(null)
   const pont = useRef(null)
   console.log(state)
   const text = useRef();
@@ -81,6 +82,10 @@ function App() {
     console.log("kmskdf")
   }
   
+
+  const onspcing = () => {
+    return setSpcing(100)
+  }
   function downloadURI(uri, name) {
     var link = document.createElement('a');
     link.download = name;
@@ -106,21 +111,54 @@ useEffect(() => {
       <div className='MAin'>
         <div className='MAINBOX'>
           <div className='IAMGE'>
-            <Stage width={400} height={400}   ref={stageRef}>
-              <Layer  >
+            <button onClick={onspcing} >spcing</button>
+            <Stage width={400} height={800}   ref={stageRef}>
+              <Layer>
+            { spcing && <Rect
+           
+           width={400}
+           height={spcing}
+           fill="red"
+           draggable={true}
+           onDragStart={() => {
+             setDragging(true);
+           }}
+           onDragEnd={() => {
+             setDragging(false);
+           }}
+         />}
 
-
-
-                <LionImage />
-                <Text ref={text} draggable={true} text={"textasdfasdfa"}  />
+             <Group y={spcing}  >
+             <LionImage />
+            
+                <Text ref={text} 
+                keepRatio={true}
+               
+                draggable={true} text={"textasdfasdfa"}  />
 
 
                 <Transformer
                 
                
                 ref={newtext} resizeEnabled={true}  />
+  
 
-
+             </Group>
+          
+             { spcing && <Rect
+           
+           width={400}
+           height={spcing}
+           fill="red"
+           y={500}
+           draggable={true}
+           onDragStart={() => {
+             setDragging(true);
+           }}
+           onDragEnd={() => {
+             setDragging(false);
+           }}
+         />}
               </Layer>
             </Stage>
 
