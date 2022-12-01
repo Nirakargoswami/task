@@ -74,10 +74,14 @@
 
 
 .Maindiv{
-  height: 300px;
-  width: 300px;
+ display: flex;
+  width: 100%;
   background-color: green;
-  position: relative;
+  
+}
+
+.ImageBox{
+
 }
 
 .font{
@@ -93,6 +97,11 @@
   width: 100%;
   border: 1px solid black;
 
+}
+@media (max-width:) {
+  .Maindiv {
+
+  }
 }
 
 .MAINBOX{

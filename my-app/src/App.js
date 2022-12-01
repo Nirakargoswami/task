@@ -1,6 +1,7 @@
 import './App.css';
 
 import React, { useEffect, useState, useRef } from "react";
+import BasicTable from "./basictable"
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import { Resizable } from "re-resizable";
 import DragResizeContainer from 'react-drag-resize';
@@ -13,7 +14,7 @@ import { useDispatch } from 'react-redux'
 import { PRODUCT_DATA } from "./redux/actions/types"
 import Cartpage from "./pages/cartpage"
 import Productpage from "./pages/productpage"
-
+import Header from "./Header/header"
 import P from "../src/assets/mem2.jpeg"
 const LionImage = () => {
   const [image] = useImage(P);
@@ -70,19 +71,19 @@ function App() {
   const [fontwidh, setfontwidth] = useState()
   const [newWidth, setnewWidth] = useState()
   const [spcing,setSpcing] = useState(null)
+  const [show,donshwo] = useState(false)
   const pont = useRef(null)
   console.log(state)
   const text = useRef();
   const newtext = useRef();
   const stageRef = useRef(null)
-  // Accessing the history instance created by React
 
 
   const downloadimage = () => {
     console.log("kmskdf")
   }
   
-
+console.log(stageRef)
   const onspcing = () => {
     return setSpcing(100)
   }
@@ -105,14 +106,28 @@ useEffect(() => {
   newtext.current.nodes([text.current]);
 })
   console.log(newtext.current)
+
+
+  const Tough = () => {
+    console.log("tir")
+  }
   return (
 
     <>
+
+<Header/>
+<main className='Maindiv'>
+
+</main>
+
+
+{/* <BasicTable/> */} 
+
       <div className='MAin'>
         <div className='MAINBOX'>
           <div className='IAMGE'>
             <button onClick={onspcing} >spcing</button>
-            <Stage width={400} height={800}   ref={stageRef}>
+            <Stage width={400} height={800} onMouseEnter= {() => donshwo(true)} onMouseLeave={() => donshwo(false)}  keepRatio={true} ref={stageRef}>
               <Layer>
             { spcing && <Rect
            
@@ -138,9 +153,13 @@ useEffect(() => {
 
 
                 <Transformer
-                
-               
-                ref={newtext} resizeEnabled={true}  />
+                anchorSize={20}
+                borderEnabled={show}
+                borderStrokeWidth	={1}
+                anchorStrokeWidth={1}
+                padding={10}
+                rotateAnchorOffset={35}
+                ref={newtext} resizeEnabled={show} rotateEnabled={show}  />
   
 
              </Group>
